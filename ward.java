@@ -6,10 +6,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-/**
- * Implementation of interface {@link Ward}. Describes a part of a hospital unit or department.
- */
-
 public class WardImpl extends AbstractPersistentJDBCObject implements Ward {
 
     int numberOfBeds;
@@ -58,26 +54,5 @@ public class WardImpl extends AbstractPersistentJDBCObject implements Ward {
     public long store(Connection connection) throws SQLException {
         if (super.isPersistent()) {
             PreparedStatement statement = PreparedStatementsUtil.updateStatements[PreparedStatementsUtil.WARD];
-            statement.setLong(1, super.getObjectID());
-            statement.setString(2, name);
-            statement.setInt(3, numberOfBeds);
-            statement.setLong(4, super.getObjectID());
-            statement.execute();
-
-        } else {
-            PreparedStatement statement = PreparedStatementsUtil.insertStatements[PreparedStatementsUtil.WARD];
-            super.setObjectID(getNextId(connection));
-            statement.setLong(1, super.getObjectID());
-            statement.setString(2, name);
-            statement.setInt(3, numberOfBeds);
-            statement.execute();
-
-        }
-        return super.getObjectID();
-    }
-
-    @Override
-    public boolean isPersistent() {
-        return super.isPersistent();
-    }
+            stat
 }
